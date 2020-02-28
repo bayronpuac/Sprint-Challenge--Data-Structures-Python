@@ -35,6 +35,7 @@ class RingBuffer:
             curr = curr.next
         return list_buffer_contents
 
+
 # ----------------Stretch Goal-------------------
 
 
