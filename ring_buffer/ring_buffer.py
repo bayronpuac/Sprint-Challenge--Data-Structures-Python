@@ -9,15 +9,13 @@ class RingBuffer:
 
     def append(self, item):
         if self.current == self.capacity:
-             # This add the iteam to the tail
+             # This add the item to the tail
             self.storage.add_to_tail(item)
             # save current and changes pointers
             cur_head = self.storage.head
             # set head to the one that was next of head
             self.storage.head = cur_head.next
-            # this allows pointer to point from head to tail
             self.storage.head.prev = self.storage.tail
-             # this allows pointer to point from head to tail
             self.storage.tail.next = self.storage.head
         else:
             self.storage.add_to_tail(item)
@@ -29,7 +27,12 @@ class RingBuffer:
         list_buffer_contents = []
 
         # TODO: Your code here
-        
+        curr = self.storage.head
+        tail = self.storage.tail
+        list_buffer_contents.append(curr.value)
+        while(curr is not tail):
+            list_buffer_contents.append(curr.next.value)
+            curr = curr.next
         return list_buffer_contents
 
 # ----------------Stretch Goal-------------------
